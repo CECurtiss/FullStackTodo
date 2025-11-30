@@ -11,6 +11,7 @@
       </tr>
     </thead>
     <tbody>
+      @for (item of items; track item.id) {
       <tr>
         <td class="tex-center">
           <input class="form-check-input" type="checkbox" />
@@ -24,17 +25,8 @@
           <button class="btn btn-danger btn-sm m-1">Delete</button>
         </td>
       </tr>
+      }
     </tbody>
   </table>
 </div>
 <hr />
-<div class="row">
-  <div class="col-3">
-    <ul>
-      @for (item of items; track $index) {
-      <li>{{ item.task }} - {{ item.priority }} - {{ item.dueDate }}</li>
-      }
-    </ul>
-    >
-  </div>
-</div>
