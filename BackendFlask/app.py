@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 import json
 from markupsafe import escape
@@ -13,4 +13,5 @@ def hello_world():
 def get_items():
     with open('db.json') as f:
         data = json.load(f)
-    return data
+        print(data)
+    return jsonify(data)

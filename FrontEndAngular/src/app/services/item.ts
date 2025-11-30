@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'http://localhost:5000/items';
   constructor(private http: HttpClient) {}
     
   
   //  get items from backend
-  getItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.apiUrl}/items`);
+  getItems(): Observable<Item[]> {   
+    return this.http.get<Item[]>(this.apiUrl);
   }
 }
   // add item to backend

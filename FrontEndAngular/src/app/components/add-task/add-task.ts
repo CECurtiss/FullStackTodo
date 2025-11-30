@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-add-task',
   imports: [FormsModule, DatePipe],
+  standalone: true,
   templateUrl: './add-task.html',
   styleUrl: './add-task.css',
 })

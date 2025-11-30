@@ -1,22 +1,30 @@
-import { Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { ItemService } from '../../services/item';
 import { Item } from '../../models/item.model';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [DatePipe],
+  standalone: true,
+  imports: [CommonModule, DatePipe],
+  changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
 })
 export class ToDoList implements OnInit {
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService,
+    private cdr: ChangeDetectorRef
+  ) {
+    
+  }
 
   items: Item [] = [];
 
   ngOnInit(): void {
     this.itemService.getItems().subscribe((data) => {
       this.items = data;
+      console.log(this.items);
+      this.cdr.detectChanges();
     });
   }
 
