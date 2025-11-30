@@ -15,13 +15,15 @@ export class ToDoList implements OnInit {
   items: Item [] = [];
 
   ngOnInit(): void {
-    this.items = this.itemService.getItems();
+    this.itemService.getItems().subscribe((data) => {
+      this.items = data;
+    });
   }
 
-  deleteItem(id: number): void {
-    this.itemService.deleteItem(id);
-    this.items = this.itemService.getItems();
-  }
+  // deleteItem(id: number): void {
+  //   this.itemService.deleteItem(id);
+  //   this.items = this.itemService.getItems();
+  // }
 
 // update item needed here
 

@@ -13,7 +13,7 @@ export class ItemService {
   
   //  get items from backend
   getItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.apiUrl)
+    return this.http.get<Item[]>(`${this.apiUrl}/items`);
   }
 }
   // add item to backend
