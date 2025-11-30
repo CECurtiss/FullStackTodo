@@ -14,6 +14,7 @@
     <label for="selectPriority">Priority</label>
     <select
       class="form-control"
+      placeholder="Select Priority"
       name="selectPriority"
       [(ngModel)]="newTask.priority"
       id="selectPriority"
@@ -31,6 +32,7 @@
         [(ngModel)]="newTask.dueDate"
         id="dueDate"
       />
+      <p>{{ newTask.dueDate | date : 'shortDate' }}</p>
     </div>
   </div>
   <button type="submit" (click)="addTask()" class="btn btn-primary mt-2">Add Task</button>
