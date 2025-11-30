@@ -1,10 +1,11 @@
 import { Component, OnInit} from '@angular/core';
 import { ItemService } from '../../services/item';
 import { Item } from '../../models/item.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
 })
