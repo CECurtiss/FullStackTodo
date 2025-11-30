@@ -36,7 +36,9 @@ export class ItemService {
 
 
    //  get items from backend
-
+  getItems(): Item[] {
+    return [...this.items];
+  }
   // add item to backend
 addItem(item: Item): void {
     item.id = this.items.length + 1;

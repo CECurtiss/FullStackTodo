@@ -27,3 +27,14 @@
     </tbody>
   </table>
 </div>
+<hr />
+<div class="row">
+  <div class="col-3">
+    <ul>
+      @for (item of items; track $index) {
+      <li>{{ item.task }} - {{ item.priority }} - {{ item.dueDate }}</li>
+      }
+    </ul>
+    >
+  </div>
+</div>
