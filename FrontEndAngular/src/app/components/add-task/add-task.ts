@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Item } from '../../models/item.model';
+import { ItemService } from '../../services/item';
 
 @Component({
   selector: 'app-add-task',
@@ -8,6 +9,8 @@ import { Item } from '../../models/item.model';
   styleUrl: './add-task.css',
 })
 export class AddTask {
+  constructor(private itemService: ItemService) {}
+  
   newTask: Item = {
     id: 0,
     priority: '',
