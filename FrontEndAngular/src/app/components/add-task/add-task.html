@@ -1,15 +1,37 @@
 <form>
   <div class="form-group">
     <label for="toDoItem">To-Do Item</label>
-    <input type="text" class="form-control" id="toDoItem" placeholder="Enter task" />
+    <input
+      type="text"
+      class="form-control"
+      name="toDoItem"
+      [(ngModel)]="newTask.task"
+      id="toDoItem"
+      placeholder="Enter task"
+    />
   </div>
   <div class="form-group">
     <label for="selectPriority">Priority</label>
-    <select class="form-control" id="selectPriority">
+    <select
+      class="form-control"
+      name="selectPriority"
+      [(ngModel)]="newTask.priority"
+      id="selectPriority"
+    >
       <option>Low</option>
       <option>Medium</option>
       <option>High</option>
     </select>
+    <div class="form-group mt-2">
+      <label for="dueDate">Due Date</label>
+      <input
+        type="date"
+        class="form-control"
+        name="dueDate"
+        [(ngModel)]="newTask.dueDate"
+        id="dueDate"
+      />
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary mt-2">Add Task</button>
+  <button type="submit" (click)="addTask()" class="btn btn-primary mt-2">Add Task</button>
 </form>
