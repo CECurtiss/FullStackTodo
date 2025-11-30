@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Item } from '../../models/item.model';
 import { ItemService } from '../../services/item';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './add-task.html',
   styleUrl: './add-task.css',
 })
-export class AddTask {
+export class AddTask implements OnInit {
   constructor(private itemService: ItemService) {}
 
   newTask: Item = this.resetTask();
@@ -33,7 +33,7 @@ export class AddTask {
   }
 
   ngOnInit(): void {
-
+    console.log(this.newTask)
   }
   
 }

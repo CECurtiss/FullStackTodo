@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
 import { ItemService } from '../../services/item';
 import { Item } from '../../models/item.model';
 
@@ -8,7 +8,7 @@ import { Item } from '../../models/item.model';
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
 })
-export class ToDoList implements OnInit {
+export class ToDoList {
 
   items: Item [] = [];
   constructor(private itemService: ItemService) {}

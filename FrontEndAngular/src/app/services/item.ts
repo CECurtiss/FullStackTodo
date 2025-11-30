@@ -46,10 +46,15 @@ addItem(item: Item): void {
   }
   // update item in backend
 
+
   // delete item from backend
   deleteItem(id: number): void {
     this.items = this.items.filter(item => item.id !== id);
   }
 
+  // get item by id
+  getItemById(id: number): Item | undefined {
+    return this.items.find(item => item.id === id);
+  }
   
 }
