@@ -40,6 +40,19 @@ def get_items():
     items_list = [dict(item) for item in items]
     return jsonify(items_list)
 
+@app.route('/items', methods=['POST'])
+def add_item():
+    data = request.json
+    conn= get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO items (priority, task, dueDate, completed, dateCompleted)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (data['priority'], data['task'], data['dueDate'], data.get('completed', 0), data.get('dateCompleted')))
+    conn.commit()
+    new_id = cursor.lastrowid
+    conn.close()
+    return jsonify({'id': new_id}), 201
 
 # @app.route('/items')
 # def get_items():
