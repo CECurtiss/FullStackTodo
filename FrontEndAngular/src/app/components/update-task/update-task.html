@@ -1,1 +1,47 @@
-<p>update-task works!</p>
+<div class="container mt-3">
+  <h3>Update Task</h3>
+  @if(item) {
+  <form>
+    <div class="form-group">
+      <label for="toDoItem">To-Do Item</label>
+      <input
+        type="text"
+        class="form-control"
+        name="toDoItem"
+        [(ngModel)]="item.task"
+        id="toDoItem"
+        placeholder="Enter task"
+      />
+    </div>
+    <div class="form-group">
+      <label for="selectPriority">Priority</label>
+      <select
+        class="form-control"
+        placeholder="Select Priority"
+        name="selectPriority"
+        [(ngModel)]="item.priority"
+        id="selectPriority"
+      >
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+      <div class="form-group mt-2">
+        <label for="dueDate">Due Date</label>
+        <input
+          type="date"
+          class="form-control"
+          name="dueDate"
+          [(ngModel)]="item.dueDate"
+          id="dueDate"
+        />
+        <!-- <p>{{ newTask.dueDate | date : 'shortDate' }}</p> -->
+      </div>
+    </div>
+
+    <button class="btn btn-primary mt-2">Update Task</button>
+  </form>
+  } @else {
+  <p>No item selected for update.</p>
+  }
+</div>

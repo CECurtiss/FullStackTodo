@@ -15,6 +15,14 @@ export class ItemService {
   getItems(): Observable<Item[]> {   
     return this.http.get<Item[]>(this.apiUrl);
   }
+
+  // get items by Id
+  getItemById(id: number): Observable<Item> {
+    const url = `${this.apiUrl}/${id}`;
+    console.log('Getting item with id:', id);
+    return this.http.get<Item>(url);
+  }
+
   // add item to backend
   addItem(item: Item): Observable<Item> {
     return this.http.post<Item>(this.apiUrl, item);
@@ -29,11 +37,7 @@ export class ItemService {
     console.log('Deleting item with id:', id);
   return this.http.delete<void>(url); 
   }
-  // get item by id
-  // getItemById(id: number): Item | undefined {
-    //   return this.items.find(item => item.id === id);
-    // }
-    
+
   }
         
 

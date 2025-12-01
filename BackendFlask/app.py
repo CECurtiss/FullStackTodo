@@ -70,6 +70,14 @@ def delete_item(item_id):
     conn.close()
     return jsonify({'message': f'Item with id {item_id} deleted.'}), 200
 
+@app.route('/items/<int:item_id>', methods=['GET'])
+def get_item(item_id):
+    conn = get_db_connection()
+    item = conn.execute('SELECT * FROM items WHERE id = ?', (item_id,)).fetchone()
+    conn.close()
+    if item is None:
+        return jsonify({'error': 'Item not found'}), 404
+    return jsonify(dict(item))
 
 
 # @app.route('/items')
