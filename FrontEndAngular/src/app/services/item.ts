@@ -15,22 +15,25 @@ export class ItemService {
   getItems(): Observable<Item[]> {   
     return this.http.get<Item[]>(this.apiUrl);
   }
-}
   // add item to backend
-// addItem(item: Item): void {
-//     item.id = this.items.length + 1;
-//     this.items.push(item);
+  addItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.apiUrl, item);
+
+  }
   // update item in backend
-
-
+  
+  
   // delete item from backend
-  // deleteItem(id: number): void {
-  //   this.items = this.items.filter(item => item.id !== id);
-  // }
-
+  deleteItemById(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    console.log('Deleting item with id:', id);
+  return this.http.delete<void>(url); 
+  }
   // get item by id
   // getItemById(id: number): Item | undefined {
-  //   return this.items.find(item => item.id === id);
-  // }
-  
+    //   return this.items.find(item => item.id === id);
+    // }
+    
+  }
+        
 

@@ -27,11 +27,19 @@ export class AddTask implements OnInit {
     }
   }
 
-  // addTask(): void {
-  //   console.log(this.newTask);
-  //   this.itemService.addItem(this.newTask);
-  //   this.newTask = this.resetTask();
-  // }
+  addTask(): void {
+    console.log(this.newTask);
+    this.itemService.addItem(this.newTask).subscribe({
+      next: (addedItem) => {
+        console.log('Item added successfully:', addedItem);
+      },
+      error: (err) => console.error(err)
+    })
+      this.newTask = this.resetTask();
+    
+  }
+  ;
+  
 
   ngOnInit(): void {
     console.log(this.newTask)

@@ -28,10 +28,13 @@ export class ToDoList implements OnInit {
     });
   }
 
-  // deleteItem(id: number): void {
-  //   this.itemService.deleteItem(id);
-  //   this.items = this.itemService.getItems();
-  // }
+  deleteItem(id: number): void {
+    console.log('Deleting item with id:', id);
+    this.itemService.deleteItemById(id).subscribe(() => {
+      this.items = this.items.filter(item => item.id !== id);
+      this.cdr.detectChanges();
+    });
+  }
 
 // update item needed here
 

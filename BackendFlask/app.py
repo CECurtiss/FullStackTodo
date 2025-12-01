@@ -46,13 +46,31 @@ def add_item():
     conn= get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO items (priority, task, dueDate, completed, dateCompleted)
+        INSERT INTO items (completed, dateCompleted, dueDate, priority, task)
         VALUES (?, ?, ?, ?, ?)
-    ''', (data['priority'], data['task'], data['dueDate'], data.get('completed', 0), data.get('dateCompleted')))
+    ''', (
+        int(data.get('completed', 0)),
+        data.get('dateCompleted', None),
+        data['dueDate'],
+        data['priority'],
+        escape(data['task'])
+    ))
     conn.commit()
     new_id = cursor.lastrowid
     conn.close()
-    return jsonify({'id': new_id}), 201
+    return jsonify({'id': new_id, **data}), 201
+
+@app.route('/items/<int:item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    print(item_id)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM items WHERE id = ?', (item_id,))
+    conn.commit()
+    conn.close()
+    return jsonify({'message': f'Item with id {item_id} deleted.'}), 200
+
+
 
 # @app.route('/items')
 # def get_items():
