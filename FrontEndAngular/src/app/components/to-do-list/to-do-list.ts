@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@a
 import { ItemService } from '../../services/item';
 import { Item } from '../../models/item.model';
 import { CommonModule, DatePipe } from '@angular/common';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-list',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe,RouterLink, RouterModule],
   changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.css',
@@ -36,6 +37,5 @@ export class ToDoList implements OnInit {
     });
   }
 
-// update item needed here
 
 }
