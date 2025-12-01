@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../../models/item.model';
 import { ItemService } from '../../services/item';
 import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-task',
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule],
   standalone: true,
   templateUrl: './add-task.html',
   styleUrl: './add-task.css',
