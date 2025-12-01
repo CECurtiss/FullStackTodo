@@ -40,4 +40,21 @@ export class UpdateTask implements OnInit {
       }
     });
   }
+
+  // update Item
+  updateItem(): void {
+    console.log("Updating item:", this.item);
+    if (this.item) {
+      this.itemService.updateItem(this.item).subscribe({
+        next: (data) => {
+          console.log("Item updated successfully:", data);
+          this.cdr.detectChanges();
+        }
+        ,
+        error: (err) => {
+          console.error("Error updating item:", err);
+        }
+      });
+    }
+  }
 }

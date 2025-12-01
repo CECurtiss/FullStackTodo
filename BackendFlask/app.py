@@ -79,6 +79,29 @@ def get_item(item_id):
         return jsonify({'error': 'Item not found'}), 404
     return jsonify(dict(item))
 
+@app.route('/items/<int:item_id>', methods=['PUT'])
+def update_item(item_id):
+    data = request.json
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        UPDATE items
+        SET completed = ?, dateCompleted = ?, dueDate = ?, priority = ?, task = ?
+        WHERE id = ?
+    ''', (
+        int(data.get('completed', 0)),
+        data.get('dateCompleted', None),
+        data['dueDate'],
+        data['priority'],
+        escape(data['task']),
+        item_id
+    ))
+    conn.commit()
+    conn.close()
+    if item_id is None:
+        return jsonify({'error': 'Item not found'}), 404
+    return jsonify({'id': item_id, **data}), 200
+
 
 # @app.route('/items')
 # def get_items():

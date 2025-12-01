@@ -38,6 +38,10 @@ export class ItemService {
   return this.http.delete<void>(url); 
   }
 
+  updateItem(item: Item): Observable<Item> {
+    const url = `${this.apiUrl}/${item.id}`;
+    console.log('Updating item with id:', item.id, 'Data:', item);
+    return this.http.put<Item>(url, item);
   }
         
-
+}
