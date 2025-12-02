@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-task.css',
 })
 export class AddTask implements OnInit {
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService) {};
 
   newTask: Item = this.resetTask();
   
@@ -23,8 +23,8 @@ export class AddTask implements OnInit {
       dueDate: new Date(),
       completed: false,
       dateCompleted: undefined
-    }
-  }
+    };
+  };
 
   addTask(): void {
     console.log(this.newTask);
@@ -35,13 +35,10 @@ export class AddTask implements OnInit {
       error: (err) => console.error(err)
     })
       this.newTask = this.resetTask();
-    
-  }
-  ;
+  };
   
-
   ngOnInit(): void {
     console.log(this.newTask)
-  }
+  };
   
-}
+};

@@ -3,7 +3,7 @@ import { ItemService } from '../../services/item';
 import { Item } from '../../models/item.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-task',
@@ -19,7 +19,8 @@ export class UpdateTask implements OnInit {
   constructor(
     private itemService: ItemService,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class UpdateTask implements OnInit {
         next: (data) => {
           console.log("Item updated successfully:", data);
           this.cdr.detectChanges();
+          this.router.navigate(['/to-do-list']);
         }
         ,
         error: (err) => {

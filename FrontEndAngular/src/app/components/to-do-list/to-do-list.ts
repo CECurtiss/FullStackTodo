@@ -15,9 +15,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 export class ToDoList implements OnInit {
   constructor(private itemService: ItemService,
     private cdr: ChangeDetectorRef
-  ) {
-    
-  }
+  ) {};
 
   items: Item [] = [];
 
@@ -27,7 +25,7 @@ export class ToDoList implements OnInit {
       console.log(this.items);
       this.cdr.detectChanges();
     });
-  }
+  };
 
   // Delete Item
   deleteItem(id: number): void {
@@ -41,6 +39,6 @@ export class ToDoList implements OnInit {
       console.error("Error deleting item:", err);
     }
   });
-  }
+  };
 
-}
+};
