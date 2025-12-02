@@ -42,4 +42,17 @@ export class ToDoList implements OnInit {
   });
   };
 
-};
+  // Update completed boolean
+  updateCompleted(item: Item): void {
+    console.log('Updating item:', item);
+    this.itemService.updateItem(item).subscribe({
+      next: (updatedItem) => {
+        console.log('Item updated:', updatedItem);
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error("Error updating item:", err);
+      }
+    });
+  }
+}

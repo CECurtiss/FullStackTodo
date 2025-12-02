@@ -80,6 +80,7 @@ def get_item(item_id):
 
 @app.route('/items/<int:item_id>', methods=['PUT'])
 def update_item(item_id):
+    completed_value = 0 if request.json.get('completed', True) else 1
     data = request.json
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -88,7 +89,7 @@ def update_item(item_id):
         SET completed = ?, dateCompleted = ?, dueDate = ?, priority = ?, task = ?
         WHERE id = ?
     ''', (
-        int(data.get('completed', 0)),
+        completed_value,
         escape(data.get('dateCompleted', None)),
         escape(data['dueDate']),
         escape(data['priority']),
