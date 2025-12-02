@@ -29,13 +29,18 @@ export class ToDoList implements OnInit {
     });
   }
 
+  // Delete Item
   deleteItem(id: number): void {
     console.log('Deleting item with id:', id);
-    this.itemService.deleteItemById(id).subscribe(() => {
+    this.itemService.deleteItemById(id).subscribe({
+      next: () => {
       this.items = this.items.filter(item => item.id !== id);
       this.cdr.detectChanges();
-    });
+    },
+    error: (err) => {
+      console.error("Error deleting item:", err);
+    }
+  });
   }
-
 
 }

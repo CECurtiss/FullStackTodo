@@ -26,10 +26,7 @@ export class ItemService {
   // add item to backend
   addItem(item: Item): Observable<Item> {
     return this.http.post<Item>(this.apiUrl, item);
-
-  }
-  // update item in backend
-  
+  }  
   
   // delete item from backend
   deleteItemById(id: number): Observable<void> {
@@ -38,6 +35,7 @@ export class ItemService {
   return this.http.delete<void>(url); 
   }
 
+  // update item in backend
   updateItem(item: Item): Observable<Item> {
     const url = `${this.apiUrl}/${item.id}`;
     console.log('Updating item with id:', item.id, 'Data:', item);

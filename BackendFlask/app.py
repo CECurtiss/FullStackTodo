@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import json
 from markupsafe import escape
 import sqlite3
 
@@ -50,9 +49,9 @@ def add_item():
         VALUES (?, ?, ?, ?, ?)
     ''', (
         int(data.get('completed', 0)),
-        data.get('dateCompleted', None),
-        data['dueDate'],
-        data['priority'],
+        escape(data.get('dateCompleted', None)),
+        escape(data['dueDate']),
+        escape(data['priority']),
         escape(data['task'])
     ))
     conn.commit()
@@ -90,9 +89,9 @@ def update_item(item_id):
         WHERE id = ?
     ''', (
         int(data.get('completed', 0)),
-        data.get('dateCompleted', None),
-        data['dueDate'],
-        data['priority'],
+        escape(data.get('dateCompleted', None)),
+        escape(data['dueDate']),
+        escape(data['priority']),
         escape(data['task']),
         item_id
     ))
@@ -101,11 +100,3 @@ def update_item(item_id):
     if item_id is None:
         return jsonify({'error': 'Item not found'}), 404
     return jsonify({'id': item_id, **data}), 200
-
-
-# @app.route('/items')
-# def get_items():
-#     with open('db.json') as f:
-#         data = json.load(f)
-#         # print(data)
-#     return jsonify(data)
