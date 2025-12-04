@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-to-do-list',
-  standalone: true,
   imports: [CommonModule, DatePipe,RouterLink, RouterModule,FormsModule],
   changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './to-do-list.html',

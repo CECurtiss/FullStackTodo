@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-task',
-  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './update-task.html',
   styleUrl: './update-task.css',
@@ -52,8 +51,7 @@ export class UpdateTask implements OnInit {
           console.log("Item updated successfully:", data);
           this.cdr.detectChanges();
           this.router.navigate(['/to-do-list']);
-        }
-        ,
+        },
         error: (err) => {
           console.error("Error updating item:", err);
         }

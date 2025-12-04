@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "priority": "High",
+    "task": "Finish project",
+    "dueDate": "2024-06-30",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "priority": "Medium",
+    "task": "Buy groceries",
+    "dueDate": "2024-07-02",
+    "completed": true,
+    "dateCompleted": "2024-06-25"
+  },
+  {
+    "id": 3,
+    "priority": "Low",
+    "task": "Walk the dog",
+    "dueDate": "2024-07-05",
+    "completed": false
+  }
+]
