@@ -43,11 +43,11 @@ export class ToDoList implements OnInit {
   };
 
   // Update completed boolean
-  updateCompleted(item: Item): void {
+  updateCompletedTask(item: Item): void {
     console.log('Updating item:', item);
-    this.itemService.updateItem(item).subscribe({
-      next: (updatedItem) => {
-        console.log('Item updated:', updatedItem);
+    this.itemService.updateCompleted(item).subscribe({
+      next: (updateCompleted) => {
+        console.log('Item updated:', updateCompleted);
         this.cdr.detectChanges();
       },
       error: (err) => {

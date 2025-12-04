@@ -41,5 +41,12 @@ export class ItemService {
     console.log('Updating item with id:', item.id, 'Data:', item);
     return this.http.put<Item>(url, item);
   }
+
+    // update item in backend
+  updateCompleted(item: Item): Observable<Item> {
+    const url = `${this.apiUrl}/${item.id}/updateCompleted`;
+    console.log('Updating item with id:', item.id, 'Data:', item);
+    return this.http.put<Item>(url, item);
+  }
         
 }

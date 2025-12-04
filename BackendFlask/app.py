@@ -37,7 +37,7 @@ def get_items():
     items = conn.execute('SELECT * FROM items').fetchall()
     conn.close()
     items_list = [dict(item) for item in items]
-    return jsonify(items_list)
+    return jsonify(items_list), 200
 
 @app.route('/items', methods=['POST'])
 def add_item():
@@ -67,6 +67,8 @@ def delete_item(item_id):
     cursor.execute('DELETE FROM items WHERE id = ?', (item_id,))
     conn.commit()
     conn.close()
+    if item_id is None:
+        return jsonify({'error': 'Item not found'}), 404
     return jsonify({'message': f'Item with id {item_id} deleted.'}), 200
 
 @app.route('/items/<int:item_id>', methods=['GET'])
@@ -76,10 +78,33 @@ def get_item(item_id):
     conn.close()
     if item is None:
         return jsonify({'error': 'Item not found'}), 404
-    return jsonify(dict(item))
+    return jsonify(dict(item)),200
 
 @app.route('/items/<int:item_id>', methods=['PUT'])
 def update_item(item_id):
+    data = request.json
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        UPDATE items
+        SET completed = ?, dateCompleted = ?, dueDate = ?, priority = ?, task = ?
+        WHERE id = ?
+    ''', (
+        int(data.get('completed', 0)),
+        escape(data.get('dateCompleted', None)),
+        escape(data['dueDate']),
+        escape(data['priority']),
+        escape(data['task']),
+        item_id
+    ))
+    conn.commit()
+    conn.close()
+    if item_id is None:
+        return jsonify({'error': 'Item not found'}), 404
+    return jsonify({'id': item_id, **data}), 200
+
+@app.route('/items/<int:item_id>/updateCompleted', methods=['PUT'])
+def update_completed(item_id):
     completed_value = 0 if request.json.get('completed', True) else 1
     data = request.json
     conn = get_db_connection()
