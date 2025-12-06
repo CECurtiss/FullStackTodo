@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../../models/item.model';
 import { ItemService } from '../../services/item';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -10,7 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-task.css',
 })
 export class AddTask implements OnInit {
-  constructor(private itemService: ItemService) {};
+  constructor(private itemService: ItemService,
+    private router: Router
+  ) {};
 
   newTask: Item = this.resetTask();
   
@@ -30,6 +33,7 @@ export class AddTask implements OnInit {
     this.itemService.addItem(this.newTask).subscribe({
       next: (addedItem) => {
         console.log('Item added successfully:', addedItem);
+        this.router.navigate(['/to-do-list']);
       },
       error: (err) => console.error(err)
     })
