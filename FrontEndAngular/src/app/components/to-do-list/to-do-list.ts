@@ -29,6 +29,7 @@ export class ToDoList implements OnInit {
 
   // Delete Item
   deleteItem(id: number): void {
+    if(window.confirm("Are you sure you want to delete this task?")) {
     console.log('Deleting item with id:', id);
     this.itemService.deleteItemById(id).subscribe({
       next: () => {
@@ -39,7 +40,10 @@ export class ToDoList implements OnInit {
       console.error("Error deleting item:", err);
     }
   });
-  };
+  } else{
+    console.log('Delete cancelled for item with id:', id);
+  }
+}
 
   // Update completed boolean
   updateCompletedTask(item: Item): void {
