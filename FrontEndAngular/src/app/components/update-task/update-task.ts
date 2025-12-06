@@ -44,6 +44,7 @@ export class UpdateTask implements OnInit {
 
   // update Item
   updateItem(): void {
+    if(window.confirm("Are you sure you want to update this task?")) {
     console.log("Updating item:", this.item);
     if (this.item) {
       this.itemService.updateItem(this.item).subscribe({
@@ -57,5 +58,8 @@ export class UpdateTask implements OnInit {
         }
       });
     }
-  }
+  } else {
+    console.log("Update cancelled by user.");
+}
+}
 }
