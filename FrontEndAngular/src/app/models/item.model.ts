@@ -2,7 +2,7 @@ export interface Item {
     id: number;
     priority: string;
     task: string;
-    dueDate: Date;
+    dueDate: Date|null;
     completed: boolean;
     dateCompleted? : Date;
 }

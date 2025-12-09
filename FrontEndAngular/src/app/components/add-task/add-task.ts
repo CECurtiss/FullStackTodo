@@ -22,7 +22,7 @@ export class AddTask implements OnInit {
       id: 0,
       priority: '',
       task: '',
-      dueDate: new Date(),
+      dueDate: null,
       completed: false,
       dateCompleted: undefined
     };

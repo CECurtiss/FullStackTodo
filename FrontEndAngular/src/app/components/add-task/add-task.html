@@ -24,6 +24,7 @@
         name="selectPriority"
         [(ngModel)]="newTask.priority"
         id="selectPriority"
+        required
       >
         <option>Low</option>
         <option>Medium</option>
@@ -37,10 +38,18 @@
           name="dueDate"
           [(ngModel)]="newTask.dueDate"
           id="dueDate"
+          required
         />
       </div>
     </div>
 
-    <button type="submit" (click)="addTask()" class="btn btn-primary mt-2">Add Task</button>
+    <button
+      type="submit"
+      [disabled]="!newTask.task || !newTask.priority || !newTask.dueDate"
+      (click)="addTask()"
+      class="btn btn-primary mt-2"
+    >
+      Add Task
+    </button>
   </form>
 </div>
