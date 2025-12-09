@@ -39,13 +39,15 @@
           [(ngModel)]="newTask.dueDate"
           id="dueDate"
           required
+          [min]="today"
+          #dueDateModel="ngModel"
         />
       </div>
     </div>
 
     <button
       type="submit"
-      [disabled]="!newTask.task || !newTask.priority || !newTask.dueDate"
+      [disabled]="!newTask.task || !newTask.priority || !newTask.dueDate || dueDateModel.invalid"
       (click)="addTask()"
       class="btn btn-primary mt-2"
     >

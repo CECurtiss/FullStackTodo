@@ -15,6 +15,8 @@ export class AddTask implements OnInit {
     private router: Router
   ) {};
 
+  today: string = new Date().toISOString().split('T')[0];
+
   newTask: Item = this.resetTask();
   
   private resetTask(): Item {
@@ -22,7 +24,7 @@ export class AddTask implements OnInit {
       id: 0,
       priority: '',
       task: '',
-      dueDate: null,
+      dueDate: new Date,
       completed: false,
       dateCompleted: undefined
     };
