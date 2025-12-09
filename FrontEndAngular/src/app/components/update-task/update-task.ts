@@ -22,6 +22,8 @@ export class UpdateTask implements OnInit {
     private router: Router
   ) {}
 
+    today: string = new Date().toISOString().split('T')[0];
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     console.log("Retrieved Id", id);
