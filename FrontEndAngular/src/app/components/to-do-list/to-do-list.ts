@@ -30,7 +30,7 @@ export class ToDoList implements OnInit {
   // Delete Item
   deleteItem(id: number): void {
     if(window.confirm("Are you sure you want to delete this task?")) {
-    console.log('Deleting item with id:', id);
+    // console.log('Deleting item with id:', id);
     this.itemService.deleteItemById(id).subscribe({
       next: () => {
       this.items = this.items.filter(item => item.id !== id);

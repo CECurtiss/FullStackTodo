@@ -105,7 +105,7 @@ def update_item(item_id):
 
 @app.route('/items/<int:item_id>/updateCompleted', methods=['PUT'])
 def update_completed(item_id):
-    completed_value = 0 if request.json.get('completed', True) else 1
+    completed_value = 1 if request.json.get('completed', False) else 0
     data = request.json
     conn = get_db_connection()
     cursor = conn.cursor()
